@@ -3,13 +3,16 @@ Code for interacting with GPT-3 in Python.
 '''
 import openai
 
+'''Initialize your API key registered from https://platform.openai.com/account/api-keys'''
+key = " your api key "
+
 class GPT():
     ''' initialize GPT with apikey '''
     def __init__(self):
         ''' store the apikey in an instance variable '''
-        self.apikey="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"
+        self.apikey = key
         # Set up the OpenAI API client
-        openai.api_key = "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" 
+        openai.api_key = key
 
         # Set up the model and prompt
         self.model_engine = "text-davinci-003"
