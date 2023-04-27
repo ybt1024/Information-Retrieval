@@ -4,7 +4,7 @@ Code for interacting with GPT-3 in Python.
 import openai
 
 '''Initialize your API key registered from https://platform.openai.com/account/api-keys'''
-key = " your api key "
+key = "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"
 
 class GPT():
     ''' initialize GPT with apikey '''
