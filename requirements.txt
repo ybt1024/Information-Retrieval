@@ -1,0 +1,5 @@
+elasticsearch-dsl
+sentence-transformers
+flask
+pyzmq
+pandas
