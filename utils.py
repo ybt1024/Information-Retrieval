@@ -64,12 +64,12 @@ def load_csv(doc_path: Union[str, os.PathLike]) -> Generator[Dict, None, None]:
             yield {
                 'jobpost': row['jobpost'],
                 'date': row['date'],
-                'Title': row['Title'],
-                'Company': row['Company'],
-                'aboutC': row['aboutC'],   # about company
-                'JobDescription': row['JobDescription'],
-                'JobRequirment': row['JobRequirment'],
-                'RequiredQual': row['RequiredQual'],
+                'title': row['Title'],
+                'company': row['Company'],
+                'aboutCompany': row['aboutC'],   # about company
+                'jobDescription': row['JobDescription'],
+                'jobRequirment': row['JobRequirment'],
+                'requiredQual': row['RequiredQual'],
             }
 
 if __name__ == "__main__":

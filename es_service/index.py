@@ -44,11 +44,13 @@ class ESIndex(object):
         """
         for i, doc in enumerate(docs):
             es_doc = BaseDoc(_id=i)
-            es_doc.doc_id = doc["_id"]
+            es_doc.jobpost = doc["jobpost"]
+            es_doc.date = doc["date"]
             es_doc.title = doc["title"]
-            es_doc.content = doc["text"]
-            es_doc.stemmed_content = doc["text"]
-            es_doc.annotation = doc["annotation"]
+            es_doc.company = doc["company"]
+            es_doc.aboutCompany = doc["aboutCompany"]
+            es_doc.jobDescription = doc["jobDescription"]
+            es_doc.jobRequirements = doc["jobRequirements"]
             es_doc.sbert_embedding = doc["sbert_embedding"]
             yield es_doc
 
