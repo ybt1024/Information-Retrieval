@@ -2,9 +2,21 @@
 Code for interacting with GPT-3 in Python.
 '''
 import openai
+import os
 
-'''Initialize your API key registered from https://platform.openai.com/account/api-keys'''
-key = "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"
+'''Initialize your API key registered from https://platform.openai.com/account/api-keys
+Then, store your APIKEY locally (Only need to do once), and GPT will fetch the key from local environment
+On Mac
+% pip3 install openai
+% export APIKEY="......."  # in bash
+% python3 gpt.py
+
+On Windows:
+% pip install openai
+% $env:APIKEY="....." # in powershell
+% python gpt.py
+'''
+key = os.environ.get('APIKEY')
 
 class GPT():
     ''' initialize GPT with apikey '''
