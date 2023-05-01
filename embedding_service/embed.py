@@ -108,6 +108,7 @@ class Encoder:
             self.embedding_model = SBERTEmbedding(self.model)
         else:
             raise ValueError(f"cannot find model: {self.model}.")
+        #modify here to add more embedding types
 
     def encode(self, texts: List[str], batch_size: int = 32) -> np.ndarray:
         embeddings = []
