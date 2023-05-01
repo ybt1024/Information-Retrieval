@@ -2,7 +2,7 @@ import argparse
 import time
 from typing import List, Dict, Union, Iterator
 from es_service.index import ESIndex
-from utils import load_nf_docs
+from utils import load_nf_docs, load_csv
 import logging
 
 logger = logging.getLogger(__name__)
@@ -35,7 +35,7 @@ class IndexLoader:
     @classmethod
     def from_folder(cls, index_name: str, nf_folder_path: str) -> "IndexLoader":
         try:
-            return IndexLoader(index_name, load_nf_docs(nf_folder_path))
+            return IndexLoader(index_name, load_csv(nf_folder_path))
         except FileNotFoundError:
             raise Exception(f"Cannot find {nf_folder_path}!")
 
@@ -52,7 +52,7 @@ def main():
         "--nf_folder_path",
         required=True,
         type=str,
-        help="path to the nfcorpus folder",
+        help="path to the corpus folder",
     )
 
     args = parser.parse_args()

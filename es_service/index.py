@@ -65,3 +65,5 @@ class ESIndex(object):
                 for d in self._populate_doc(docs)
             ),
         )
+
+
