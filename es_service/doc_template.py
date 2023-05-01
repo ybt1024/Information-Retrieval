@@ -15,19 +15,30 @@ class BaseDoc(Document):
     wapo document mapping structure
     """
 
-    doc_id = (
-        Keyword()
-    )  # we want to treat the doc_id as a Keyword (its value won't be tokenized or normalized).
-    title = (
+    job_title = (
         Text()
     )  # by default, Text field will be applied a standard analyzer at both index and search time
-    content = Text(
-        analyzer="standard"
-    )  # we can also set the standard analyzer explicitly
-    stemmed_content = Text(
-        analyzer="english"
-    )  # index the same content again with english analyzer
-    annotation = Nested()
+    job_post = (
+        Text()
+    )
+    date = (
+        Date()
+    )
+    company_name = (
+        Text()
+    )
+    about_company = (
+        Text()
+    )
+    job_description = (
+        Text()
+    )
+    job_requirement = (
+        Text()
+    )
+    required_Qual = (
+        Text()
+    )
     sbert_embedding = DenseVector(
         dims=768
     )  # sentence BERT embedding in the DenseVector field
