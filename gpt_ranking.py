@@ -31,15 +31,16 @@ resume_df = pd.read_csv(resume_path)
 # list of strings to be passed into functions
 # using the job posting, title, job description, and job requirements as important data
 to_embedding_strings = [str(jPos) + ', ' + str(t) + ', ' + str(jDes) + ', ' + str(jReq) 
-                  for (jPos,t,jDes,jReq) in 
+                  for (jPos, t, jDes, jReq) in 
                   zip(results_df.get('jobpost'), results_df.get('title'), 
                       results_df.get('jobDescription'), results_df.get('jobRequirements'))]
 # adding objective, experience, and skills from client's resume at final position 
 resume_data = [str(o) + ', ' + str(s) + ', ' + str(p) 
                for (o, s, p) in 
                zip(resume_df.df.get('objective'), 
-                   resume_df.get('skills'), df2.get('experience'))]
+                   resume_df.get('skills'), resume_df.get('experience'))]
 to_embedding_strings.append(resume_data[0])
+
 # index of resume in the list
 resume_ind = len(to_embedding_strings) - 1
 
