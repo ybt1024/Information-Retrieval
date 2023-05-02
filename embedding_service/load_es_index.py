@@ -49,7 +49,7 @@ def main():
         help="name of the ES index",
     )
     parser.add_argument(
-        "--nf_folder_path",
+        "--corpus_folder_path",
         required=True,
         type=str,
         help="path to the corpus folder",
