@@ -62,14 +62,14 @@ def load_csv(doc_path: Union[str, os.PathLike]) -> Generator[Dict, None, None]:
         for row in reader:
             # Yield a dictionary containing only the desired columns
             yield {
-                'jobpost': row['jobpost'],
-                'date': row['date'],
-                'title': row['Title'],
-                'company': row['Company'],
-                'aboutCompany': row['aboutC'],   # about company
-                'jobDescription': row['JobDescription'],
-                'jobRequirment': row['JobRequirment'],
-                'requiredQual': row['RequiredQual'],
+                'jobpost': row.get('jobpost',""),
+                'date': row.get('date',""),
+                'title': row.get('Title',""),
+                'company': row.get('Company',""),
+                'aboutCompany': row.get('aboutC',""),   # about company
+                'jobDescription': row.get('JobDescription',""),
+                'jobRequirement': row.get('JobRequirment',""),
+                'requiredQual': row.get('RequiredQual',"")
             }
 
 if __name__ == "__main__":

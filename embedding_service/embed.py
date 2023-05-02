@@ -6,6 +6,8 @@ from typing import List, Any
 import numpy as np
 from sentence_transformers import SentenceTransformer
 
+from utils import load_csv
+
 
 class SBERTEmbedding:
     def __init__(self, model_name: str) -> None:
@@ -124,4 +126,24 @@ class Encoder:
 
 if __name__ == "__main__":
     encoder = Encoder("sbert", "allenai-specter")
-    print(encoder.encode(["this is a title"]))
+    embedding1 = None
+    embedding2 = None
+
+    for job in load_csv("../corpus_data/data_job_posts.csv"):
+        job_desc = job["jobDescription"]
+        job_req = job["jobRequirement"]
+        if embedding1 is None:
+            embedding1 = encoder.encode([job_desc])
+            embedding2 = encoder.encode([job_req])
+            #encoder.encode returns a numpy array of shape
+            #(1, 768)
+            #may need to modify the shape for elastic search
+        else:
+            embedding1 = np.vstack((embedding1, encoder.encode([job_desc])))
+            embedding2 = np.vstack((embedding2, encoder.encode([job_req])))
+
+    #save the embeddings
+    np.save("../corpus_data/job_description_embedding.npy", embedding1)
+    np.save("../corpus_data/job_requirement_embedding.npy", embedding2)
+
+
