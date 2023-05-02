@@ -37,7 +37,7 @@ to_embedding_strings = [str(jPos) + ', ' + str(t) + ', ' + str(jDes) + ', ' + st
 # adding objective, experience, and skills from client's resume at final position 
 resume_data = [str(o) + ', ' + str(s) + ', ' + str(p) 
                for (o, s, p) in 
-               zip(resume_df.df.get('objective'), 
+               zip(resume_df.get('objective'), 
                    resume_df.get('skills'), resume_df.get('experience'))]
 to_embedding_strings.append(resume_data[0])
 
