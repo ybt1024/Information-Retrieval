@@ -73,7 +73,14 @@ def load_csv(doc_path: Union[str, os.PathLike]) -> Generator[Dict, None, None]:
             }
 
 if __name__ == "__main__":
-
+    for res in load_csv("./corpus_data/data_job_posts.csv"):
+        print(type(res['jobpost']))
+        print(type(res['date']))
+        print(type(res['title']))
+        print(type(res['company']))
+        print(type(res['aboutCompany']))
+        print(type(res['jobDescription']))
+        print('end')
     pass
 
 

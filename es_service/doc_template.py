@@ -22,7 +22,7 @@ class BaseDoc(Document):
         Text()
     )
     date = (
-        Date()
+        Text()
     )
     company_name = (
         Text()
