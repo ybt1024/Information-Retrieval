@@ -39,9 +39,9 @@ class BaseDoc(Document):
     required_Qual = (
         Text()
     )
-    sbert_embedding = DenseVector(
-        dims=768
-    )  # sentence BERT embedding in the DenseVector field
+    # sbert_embedding = DenseVector(
+    #     dims=768
+    # )  # sentence BERT embedding in the DenseVector field
 
     def save(self, *args, **kwargs):
         """
