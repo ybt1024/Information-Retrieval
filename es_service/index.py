@@ -50,8 +50,8 @@ class ESIndex(object):
             es_doc.company = doc["company"]
             es_doc.aboutCompany = doc["aboutCompany"]
             es_doc.jobDescription = doc["jobDescription"]
-            es_doc.jobRequirements = doc["jobRequirements"]
-            es_doc.sbert_embedding = doc["sbert_embedding"]
+            es_doc.jobRequirements = doc["jobRequirement"]
+            #es_doc.sbert_embedding = doc["sbert_embedding"]
             yield es_doc
 
     def load(self, docs: Union[Iterator[Dict], Sequence[Dict]]):
