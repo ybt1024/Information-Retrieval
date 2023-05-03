@@ -17,14 +17,7 @@ def home():
 def results():
     # TODO:
     query = request.form["query"]
-
-    # matched_doc_meta_ids = []
     matched_docs = BM25_standard_analyzer_search(query)
-    print(matched_docs)
-    # sliced_id = matched_doc_meta_ids[:min(len(matched_doc_meta_ids), PER_PAGE)]
-    # matched_docs = search_by_ids("nf_docs", sliced_id, 10)
-    # is_last = len(matched_doc_meta_ids) <= PER_PAGE
-
     return render_template('results.html',
                            page_id=0,
                            is_last=True,
@@ -37,22 +30,7 @@ def results():
 @app.route("/results/<int:page_id>", methods=["POST"])
 def next_page(page_id):
     # TODO:
-    query = request.form["query"]
-    search_option = request.form["search_option"]
-    doc_ids = request.form["matched_doc_ids"]
-    print(doc_ids)
-    matched_doc_ids = string_to_int_list(doc_ids)
-    sliced_id = slice(matched_doc_ids, page_id, PER_PAGE)
-    matched_docs = search_by_ids("nf_docs", sliced_id, 10)
-    is_last = len(matched_doc_ids) <= (page_id + 1) * PER_PAGE
-    return render_template('results.html',
-                           page_id=page_id,
-                           is_last=is_last,
-                           docs=matched_docs,
-                           query=query,
-                           matched_doc_ids=matched_doc_ids,
-                           search_option=search_option
-                           )
+    return
 
 
 def string_to_int_list(s: str) -> List[int]:
@@ -68,7 +46,7 @@ def slice(list: List, page_id: int, per_page: int) -> List:
 @app.route("/doc_data/<int:doc_id>")
 def doc_data(doc_id):
     # TODO:
-    document = search_by_ids("nf_docs", [doc_id], 10)[0]
+    document = search_by_ids("job_posting", [doc_id], 8)[0]
     return render_template("doc.html", document=document)
 
 
