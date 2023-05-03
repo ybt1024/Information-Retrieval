@@ -56,7 +56,7 @@ def main():
     )
 
     args = parser.parse_args()
-    idx_loader = IndexLoader.from_folder(args.index_name, args.nf_folder_path)
+    idx_loader = IndexLoader.from_folder(args.index_name, args.corpus_folder_path)
     idx_loader.load()
 
 
