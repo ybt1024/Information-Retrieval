@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            background-color: lightskyblue;
+        }
+    </style>
+    <title>Job Search</title>
+</head>
+<body>
+
+<h3>Job Search</h3>
+
+<form action="{{ url_for('results') }}" name="search" method="post">
+    <label for="query">Upload your resume:</label>
+    <input type="file" id="file" name="file" accept=".pdf">
+    <br>
+    <label for="query">Query:</label>
+    <input type="text" id="query" name="query" size=50>
+    <input type="submit" value="Search">
+
+</form>
+
+</body>
+</html>
