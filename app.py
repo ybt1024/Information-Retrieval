@@ -1,7 +1,7 @@
 from typing import List
 
 from flask import Flask, render_template, request
-from search import BM25_standard_analyzer_search, BM25_english_analyzer_search, reranking_BM25_english_anlyzer_using_BERT_search, BERT_embeddings_search, search_by_ids
+from search import BM25_standard_analyzer_search, BM25_english_analyzer_search, search_by_ids
 
 app = Flask(__name__)
 PER_PAGE = 8
@@ -18,26 +18,18 @@ def results():
     # TODO:
     query = request.form["query"]
 
-    matched_doc_meta_ids = []
-    # if search_option == "option1":
-    #     matched_doc_meta_ids = [id_pair[1] for id_pair in BM25_standard_analyzer_search(query)]
-    # elif search_option == "option2":
-    #     matched_doc_meta_ids = [id_pair[1] for id_pair in BM25_english_analyzer_search(query)]
-    # elif search_option == "option3":
-    #     matched_doc_meta_ids = [id_pair[1] for id_pair in BERT_embeddings_search(query)]
-    # else:
-    #     matched_doc_meta_ids = [id_pair[1] for id_pair in reranking_BM25_english_anlyzer_using_BERT_search(query)]
-    sliced_id = matched_doc_meta_ids[:min(len(matched_doc_meta_ids), PER_PAGE)]
-    matched_docs = search_by_ids("nf_docs", sliced_id, 10)
-    is_last = len(matched_doc_meta_ids) <= PER_PAGE
+    # matched_doc_meta_ids = []
+    matched_docs = BM25_standard_analyzer_search(query)
+    print(matched_docs)
+    # sliced_id = matched_doc_meta_ids[:min(len(matched_doc_meta_ids), PER_PAGE)]
+    # matched_docs = search_by_ids("nf_docs", sliced_id, 10)
+    # is_last = len(matched_doc_meta_ids) <= PER_PAGE
 
     return render_template('results.html',
                            page_id=0,
-                           is_last=is_last,
+                           is_last=True,
                            docs=matched_docs,
                            query=query,
-                           matched_doc_ids=matched_doc_meta_ids,
-                           search_option=search_option
                            )
 
 
