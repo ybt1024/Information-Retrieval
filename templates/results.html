@@ -1,0 +1,45 @@
+<!--TODO: add your html here-->
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <style>
+            body {
+                background-color: lightskyblue;
+            }
+        </style>
+        <title>Job Search</title>
+<!--        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">-->
+    </head>
+
+    <body>
+    <h3>Job Search</h3>
+    <form action="{{ url_for('results') }}" name="search" method="post">
+        <label for="query">Query:</label>
+        <input type="text" id="query" name="query" size=50 value="{{query}}">
+        <input type="submit" value="Search">
+    </form>
+
+
+
+    <ul>
+        {% for doc in docs %}
+        <li>
+            <a href="{{url_for('doc_data', doc_id = doc.meta.id)}}">{{doc['job_title']}}</a>
+            <p>{{doc['job_post'][:150]}}</p>
+        </li>
+        {% endfor %}
+    </ul>
+    <form action="{{ url_for('next_page', page_id = page_id +　1)}}" method="post">
+      <input type="hidden" name="query" value="{{query}}">
+        <input type="hidden" name="matched_doc_ids" value="{{matched_doc_ids}}">
+      <button type="submit" {% if is_last %} disabled {% endif %} >
+        Next
+      </button>
+    </form>
+
+
+    </body>
+
+</html>
