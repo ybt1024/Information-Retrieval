@@ -16,16 +16,15 @@ On Windows:
 % $env:APIKEY="....." # in powershell
 % python gpt.py
 '''
-key = os.environ.get('APIKEY')
 
 class GPT():
     ''' initialize GPT with apikey '''
     def __init__(self):
+        key = os.environ.get('APIKEY')
         ''' store the apikey in an instance variable '''
         self.apikey = key
         # Set up the OpenAI API client
         openai.api_key = key
-
         # Set up the model and prompt
         self.model_engine = "text-davinci-003"
 

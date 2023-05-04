@@ -15,7 +15,7 @@
 
     <body>
     <h3>Job Search</h3>
-    <form action="{{ url_for('results') }}" name="search" method="post">
+    <form action="{{ url_for('results') }}" name="search" method="post" enctype = "multipart/form-data">
         <label for="query">Upload your resume:</label>
         <input type="file" id="file" name="file" accept=".pdf">
         <br>
@@ -24,8 +24,13 @@
         <input type="submit" value="Search">
     </form>
 
+    <hr>
 
+    GPT Comments:
+    <div style="border:thin solid black">{{answer}}</div>
+    
 
+    <hr>
     <ul>
         {% for doc in docs %}
         <li>

@@ -1,10 +1,16 @@
 from typing import List
-
+from utils import load_resume
+from gpt import GPT
+import os
+from werkzeug.utils import secure_filename
 from flask import Flask, render_template, request
 from search import BM25_standard_analyzer_search, BM25_english_analyzer_search, search_by_ids
 
 app = Flask(__name__)
 PER_PAGE = 8
+gptAPI = GPT()
+app.config['UPLOAD_FOLDER'] = "./corpus_data"
+
 
 # home page
 @app.route("/")
@@ -17,12 +23,19 @@ def home():
 def results():
     # TODO:
     query = request.form["query"]
+    pdf = request.files["file"]
+    pdf.save(secure_filename(pdf.filename))
+    resume = load_resume(os.path.join(app.config["UPLOAD_FOLDER"], \
+                         pdf.filename))
+    prompt = "What are the most suitable jobs based on this resume: " + resume
+    answer = gptAPI.getResponse(prompt)
     matched_docs = BM25_standard_analyzer_search(query)
     return render_template('results.html',
                            page_id=0,
                            is_last=True,
                            docs=matched_docs,
                            query=query,
+                           answer = answer,
                            )
 
 
