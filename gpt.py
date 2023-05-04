@@ -37,7 +37,7 @@ class GPT():
             max_tokens=1024,
             n=1,
             stop=None,
-            temperature=0.8,
+            temperature=0.2,
         )    
         response = completion.choices[0].text
         return response
@@ -45,4 +45,5 @@ class GPT():
 if __name__=='__main__':
     g = GPT()
     print(g.getResponse("what does openai GPT stand for?"))
+    
 
