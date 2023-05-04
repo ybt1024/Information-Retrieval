@@ -24,9 +24,9 @@ def results():
     # TODO:
     query = request.form["query"]
     pdf = request.files["file"]
-    pdf.save(secure_filename(pdf.filename))
-    resume = load_resume(os.path.join(app.config["UPLOAD_FOLDER"], \
-                         pdf.filename))
+    filename = secure_filename(pdf.filename)
+    pdf.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+    resume = load_resume(os.path.join(app.config["UPLOAD_FOLDER"], filename))
     prompt = "What are the most suitable jobs based on this resume: " + resume
     answer = gptAPI.getResponse(prompt)
     matched_docs = BM25_standard_analyzer_search(query)
