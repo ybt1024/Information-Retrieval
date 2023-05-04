@@ -39,7 +39,7 @@ class GPT():
             stop=None,
             temperature=0.2,
         )    
-        response = completion.choices[0].text
+        response = completion.choices[0].text.strip()
         return response
 
 if __name__=='__main__':

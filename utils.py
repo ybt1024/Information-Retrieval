@@ -7,6 +7,8 @@ import time
 import numpy as np
 import pandas as pd
 import csv
+from PyPDF2 import PdfReader
+
 
 def timer(func):
     @functools.wraps(func)
@@ -72,6 +74,14 @@ def load_csv(doc_path: Union[str, os.PathLike]) -> Generator[Dict, None, None]:
                 'requiredQual': row.get('RequiredQual',"")
             }
 
+
+def load_resume(doc_path: Union[str, os.PathLike]) -> str:
+    reader = PdfReader(doc_path)
+    text = " "
+    for page in reader.pages:
+        text += page.extract_text()
+    return text
+
 if __name__ == "__main__":
     for res in load_csv("./corpus_data/data_job_posts.csv"):
         print(type(res['jobpost']))
@@ -83,5 +93,7 @@ if __name__ == "__main__":
         print('end')
     pass
 
+    # a = load_resume("./corpus_data/Test_CV_security.pdf")
+    # print(a)
 
 
