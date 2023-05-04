@@ -1,3 +1,8 @@
+'''
+Code for the Flask App
+
+Contributor: Ziming Xu
+'''
 from typing import List
 from utils import load_resume
 from gpt import GPT
@@ -21,6 +26,9 @@ def home():
 # result page
 @app.route("/results", methods=["POST"])
 def results():
+    '''
+    Result page that returns searched documents and GPT comment
+    '''
     # TODO:
     query = request.form["query"]
     pdf = request.files["file"]
@@ -58,6 +66,9 @@ def slice(list: List, page_id: int, per_page: int) -> List:
 # document page
 @app.route("/doc_data/<int:doc_id>")
 def doc_data(doc_id):
+    '''
+    Document page that returns matched doc
+    '''
     # TODO:
     document = search_by_ids("job_posting", [doc_id], 8)[0]
     return render_template("doc.html", document=document)

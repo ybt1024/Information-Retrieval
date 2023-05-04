@@ -1,5 +1,7 @@
 '''
 Code for interacting with GPT-3 in Python.
+
+Contributor: Ziming Xu,
 '''
 import openai
 import os
@@ -15,6 +17,8 @@ On Windows:
 % pip install openai
 % $env:APIKEY="....." # in powershell
 % python gpt.py
+
+Contributor: Ziming Xu
 '''
 
 class GPT():

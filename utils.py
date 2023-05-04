@@ -1,3 +1,8 @@
+'''
+Util functions to be used
+
+Contributor: Ziming Xu
+'''
 from pathlib import Path
 from typing import Dict, Union, Generator
 import os
@@ -76,6 +81,10 @@ def load_csv(doc_path: Union[str, os.PathLike]) -> Generator[Dict, None, None]:
 
 
 def load_resume(doc_path: Union[str, os.PathLike]) -> str:
+    '''
+    load the pdf version of resume into GPT friendly string
+    
+    Contributor: Ziming Xu'''
     reader = PdfReader(doc_path)
     text = " "
     for page in reader.pages:
