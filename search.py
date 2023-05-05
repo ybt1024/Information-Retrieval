@@ -31,6 +31,7 @@ def search(index: str, query: Query, k: int) -> List:
     s = Search(using="default", index=index).query(query)[:k]
     s = s.extra(explain=True)
     response = s.execute()
+    # line below added by Kirsten
     results_to_csv(response)
     return response
 
@@ -55,23 +56,39 @@ def format_explanation(explanation):
    
     return formatted
 
+'''
+Contributor: Kirsten
 
+Saves results of every search query to a csv file for use in AI reranking.
+'''
 def results_to_csv(results):
+    # opens/creates a file that it saves it to - file is always the same so it's always overwritten with every query if it's already an existing file
     with open("./corpus_data/query_results.csv", 'w', newline=None) as file:
         writer = csv.writer(file)
+        # the fields of the document: doc_id, job_post, date, title, company_name, about_company, job_description, job_requirements, required_Qual
         fields = [f for f in results[0]]
         fields.insert(0, 'doc_id')
         writer.writerow(fields)
-        for num, doc in enumerate(results):
+        for doc in results:
+            # converts to string to get doc_id
             hit_str = str(doc)
+            # doc_id is located after the first '\' character in the converted string
             id_start = hit_str.index('/')+1
+            # doc_id ends before the first ')' character in the converted string
             id_stop = hit_str.index(')')
+            # creates a substring of the doc_id to add into the csv file - in case it should be needed
             doc_id = hit_str[id_start:id_stop]
+            # converts the doc to a dict for easier data accessing
             doc_dict = doc.to_dict()
+            # inserts doc_id as the first piece of data 
             data = [doc_id]
+            # gets the rest of the doc data from the results and adds it to the same list
             for key in doc_dict:
+                # removes newline characters for accurate data parsing 
                 val = doc_dict[key].replace('\n', '')
+                # adds it to the data 
                 data.append(val)
+            # writes the full data from the job posting to the csv file
             writer.writerow(data)
     
 

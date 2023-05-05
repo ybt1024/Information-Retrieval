@@ -24,7 +24,8 @@ Contributor: Ziming Xu
 class GPT():
     ''' initialize GPT with apikey '''
     def __init__(self):
-        key = "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"
+        # key = "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"
+        key = "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"
         ''' store the apikey in an instance variable '''
         self.apikey = key
         # Set up the OpenAI API client

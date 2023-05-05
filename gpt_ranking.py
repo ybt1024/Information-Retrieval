@@ -1,11 +1,13 @@
 """
-openai embeddings 
+Contributor: Kirsten 
+
+- openai embeddings 
 - we use chatgpt/openai to rerank the results of the original query to show best resume matches
-adapted from https://github.com/openai/openai-cookbook/blob/main/examples/Recommendation_using_embeddings.ipynb
+- takes the results of the original query and the user's/the uploaded resume to rerank the results based on cosine similarity
+- adapted from https://github.com/openai/openai-cookbook/blob/main/examples/Recommendation_using_embeddings.ipynb
 """
 
 # imports
-# import List
 from typing import List
 import openai
 import os
@@ -22,6 +24,12 @@ from openai.embeddings_utils import (
 
 class Rerank():
 
+    ''' 
+    Initializes the reranker parameters. Model/Engine used is set to the 2nd version of what openAI has (currently the most recent).
+    @param result_path (str): path to saved csv file of original text box query
+    @param resume (str): string of data read from a pdf of a resume
+
+    '''
     def __init__(self, result_path, resume) -> None:
         self.model = "text-embedding-ada-002"
         self.results_df = pd.read_csv(result_path)
@@ -32,11 +40,16 @@ class Rerank():
         self.embedding_list = []
         self.resume_embedding = None
         self.indices_of_nearest_neighbors = None
+        # calls on method that collects the necessary/important information for embedding generation
         self.get_resume_result_strings()
 
+    '''
+    Gets data from the provided results and resume. Fills the list of strings to be passed into the other functions for embedding generation.
+    Uses the job posting, title, job description, job requirements, and required qualifications as important data from the results.
+    Uses all information on the resume. Takes note of where in the list the resume data is added.
+    '''
     def get_resume_result_strings(self):
-        # list of strings to be passed into functions
-        # using the job posting, title, job description, job requirements, and required qualifications as important data
+        # data accessed through the pandas dataframe
         self.to_embedding_strings = [str(jPos) + ', ' + str(t) + ', ' + str(jDes) + ', ' + str(jReq) + ', ' + str(jQual) 
                   for (jPos, t, jDes, jReq, jQual) in 
                   zip(self.results_df.get('job_post'), self.results_df.get('title'), 
@@ -45,18 +58,22 @@ class Rerank():
         self.to_embedding_strings.append(self.resume_data)
         # index of resume in the list
         self.resume_ind = len(self.to_embedding_strings) - 1
+        # calls on method that implements the reranking of the results
         self.recommendations_from_strings()
 
-    def recommendations_from_strings(self, ) -> List[int]:
+    '''
+    Determines which job listings from the results are best suited for the resume submitted. Many of the functions are already built into the 
+    openAI interface.
+    '''
+    def recommendations_from_strings(self) -> List[int]:
         """Return nearest neighbors of a given string."""
-        # get embeddings for all strings (function from embeddings_utils.py)
+        # gets embeddings for all of the strings - job posting query results and resume (get_embedding() function from embeddings_utils.py)
         self.embedding_list = [get_embedding(string, engine=self.model) for string in self.to_embedding_strings ]
-        # get the embedding of the source string
+        # gets the embedding of the source string through the index that was previously stored/noted
         self.resume_embedding = self.embedding_list[self.resume_ind]
-        # get distances between the source embedding and other embeddings (function from embeddings_utils.py)
+        # get distances between the resume's embedding and the embeddings of the job posting results through cosine similarity (distances_from_embeddings() function from embeddings_utils.py)
         distances = distances_from_embeddings(self.resume_embedding, self.embedding_list, distance_metric="cosine")
-        # get indices of nearest neighbors (function from embeddings_utils.py)
+        # get indices of nearest neighbors (indices_of_nearest_neighbors_from_distances() function from embeddings_utils.py)
         self.indices_of_nearest_neighbors = indices_of_nearest_neighbors_from_distances(distances)
-        # return self.indices_of_nearest_neighbors
 
 
