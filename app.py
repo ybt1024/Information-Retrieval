@@ -35,7 +35,8 @@ def results():
     # TODO:
     query = request.form["query"]
     pdf = request.files["file"]
-    answer = None
+    answer = "None. "
+    answer += "Upload your resume and retype your query, then reclick the search button and the AI Rerank button after to have it rerank the results of your query. "
     most_frequent_skills = None
     if pdf:
         filename = secure_filename(pdf.filename)
@@ -64,12 +65,11 @@ def reranked_results():
     '''
     # TODO:
     answer = None
-    reranked_matches = []
+    matched_docs = BM25_standard_analyzer_search(query)
     if pdf:
         filename = secure_filename(pdf.filename)
         resume = load_resume(os.path.join(app.config["UPLOAD_FOLDER"], filename))
         answer = "These are the reranked results of your original query. They are ranked in order of which postings match your resume best."
-        matched_docs = BM25_standard_analyzer_search(query)
         gpt_reranking = Rerank("./corpus_data/query_results.csv", resume)
         reranked_ind = gpt_reranking.indices_of_nearest_neighbors[1:]
         list_docs = []
@@ -82,12 +82,17 @@ def reranked_results():
         answer += "Upload your resume and retype your query, then reclick the search button and the AI Rerank button after to have it rerank the results of your query. "
         answer += "You must upload your resume everytime you enter a new search if you want to use the AI Reranking feature."
         reranked_matches = []
+    if query:
+        most_frequent_skills = required_skills_process(gptAPI.getResponse("Identify skills that are most frequently required by employers for " + query))
+        reranked_matches = matched_docs
+    os.remove("./corpus_data/query_results.csv")
     return render_template('results.html',
                            page_id=0,
                            is_last=True,
                            docs=reranked_matches,
                            query=query,
                            answer = answer,
+                           most_frequent_skills = most_frequent_skills
                            )
 
 # "next page" to show more results
