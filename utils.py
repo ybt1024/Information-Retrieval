@@ -91,6 +91,7 @@ def load_resume(doc_path: Union[str, os.PathLike]) -> str:
         text += page.extract_text()
     return text
 
+
 if __name__ == "__main__":
     for res in load_csv("./corpus_data/data_job_posts.csv"):
         print(type(res['jobpost']))

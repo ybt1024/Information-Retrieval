@@ -3,3 +3,6 @@ sentence-transformers
 flask
 pyzmq
 pandas
+openai
+matplotlib
+plotly
