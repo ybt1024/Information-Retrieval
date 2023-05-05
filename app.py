@@ -50,8 +50,11 @@ def results():
     prompt="I'll send you "+str(len(matched_docs))+" job posts,please return a list of ranks for relativity, eg: 5,1,3,4,2, means the fifth doc I sent is the most relevant"
     temp_answer=gptAPI.getResponse(prompt)
     for doc in matched_docs:
-        prompt += dict_to_string(doc)
-        temp_answer = gptAPI.getResponse(prompt)
+        s=dict_to_string(doc)
+        token_list=s.split()
+        token_list=token_list[:4090]
+        s=' '.join(token_list)
+        temp_answer = gptAPI.getResponse(s)
     prompt="pls return the list of ranking for similarity as I ordered, make sure to only return a list of numbers and nothing else"
     answer=gptAPI.getResponse(prompt)
     print(answer)
