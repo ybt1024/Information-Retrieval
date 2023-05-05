@@ -8,14 +8,14 @@ from utils import load_resume
 from gpt import GPT
 import os
 from werkzeug.utils import secure_filename
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, session
 from search import BM25_standard_analyzer_search, BM25_english_analyzer_search, search_by_ids
 
 app = Flask(__name__)
 PER_PAGE = 8
 gptAPI = GPT()
 app.config['UPLOAD_FOLDER'] = "./corpus_data"
-
+app.config['SESSION_TYPE'] = 'filesystem'
 
 # home page
 @app.route("/")
@@ -40,13 +40,34 @@ def results():
         prompt = "What are the most suitable jobs based on this resume: " + resume
         answer = gptAPI.getResponse(prompt)
     matched_docs = BM25_standard_analyzer_search(query)
+    #give a unique id to each doc in matched docs
+    i=0
+    for doc in matched_docs:
+        doc['id']=i
+        i=i+1
+    score_dict=dict()
+    reason_dict=dict()
+    prompt="I'll send you "+str(len(matched_docs))+" job posts,please return a list of ranks for relativity, eg: 5,1,3,4,2, means the fifth doc I sent is the most relevant"
+    temp_answer=gptAPI.getResponse(prompt)
+    for doc in matched_docs:
+        prompt += dict_to_string(doc)
+        temp_answer = gptAPI.getResponse(prompt)
+    prompt="pls return the list of ranking for similarity as I ordered, make sure to only return a list of numbers and nothing else"
+    answer=gptAPI.getResponse(prompt)
+    print(answer)
+
+
     return render_template('results.html',
                            page_id=0,
                            is_last=True,
                            docs=matched_docs,
+                           #reordered_docs=reordered_docs,
                            query=query,
-                           answer = answer,
+                           answer=answer,
                            )
+
+
+
 
 
 # "next page" to show more results
@@ -59,7 +80,12 @@ def next_page(page_id):
 def string_to_int_list(s: str) -> List[int]:
     s = s[1:-1]
     return [int(num.replace("'", "")) for num in s.split(',')]
-
+def dict_to_string(d):
+    res="/n"
+    for k in d:
+        s= str(k)+str(d[k])
+        res+=s
+    return res
 
 def slice(list: List, page_id: int, per_page: int) -> List:
     return list[page_id * PER_PAGE: min(len(list), (page_id + 1) * PER_PAGE)]
@@ -77,4 +103,6 @@ def doc_data(doc_id):
 
 
 if __name__ == "__main__":
+    app.secret_key = 'your-secret-key'
+    app.config['SESSION_TYPE'] = 'filesystem'
     app.run(debug=True, port=5000)

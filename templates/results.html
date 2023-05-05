@@ -43,6 +43,11 @@
                     <a href="{{url_for('doc_data', doc_id = doc.meta.id)}}">{{doc['job_post'][:150]}}</a>
                 </li>
                 {% endfor %}
+                {% for doc in docs %}
+                <li class="list-group-item">
+                    <a href="{{url_for('doc_data', doc_id = doc.meta.id)}}">{{doc['job_post'][:150]}}</a>
+                </li>
+                {% endfor %}
             </ul>
 
             <form action="{{ url_for('next_page', page_id = page_id + 1)}}" method="post">
