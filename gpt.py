@@ -24,7 +24,7 @@ Contributor: Ziming Xu
 class GPT():
     ''' initialize GPT with apikey '''
     def __init__(self):
-        # key = "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"
+        key = os.environ.get('APIKEY')
         ''' store the apikey in an instance variable '''
         self.apikey = key
         # Set up the OpenAI API client
@@ -40,7 +40,7 @@ class GPT():
             max_tokens=1024,
             n=1,
             stop=None,
-            temperature=0.2,
+            temperature=0.01,
         )    
         response = completion.choices[0].text.strip()
         return response
