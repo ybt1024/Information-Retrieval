@@ -1,26 +1,71 @@
 <!--TODO: add your html here-->
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+
+<!--    <head>-->
+<!--        <meta charset="UTF-8">-->
+<!--        <style>-->
+<!--            body {-->
+<!--                background-color: lightskyblue;-->
+<!--            }-->
+<!--        </style>-->
+<!--        <title>{{ document.job_title }}</title>-->
+<!--    </head>-->
+
+<!--  <body>-->
+<!--    <h1>{{ document.job_title }}</h1>-->
+<!--    <p>{{ document.job_description }}</p>-->
+<!--    <p>{{ document.job_requirements }}</p>-->
+<!--    <p>{{ document.required_Qual }}</p>-->
+<!--    <p>{{ document.job_post }}</p>-->
+<!--    <p>{{ document.company_name }}</p>-->
+<!--    <p>{{ document.about_company }}</p>-->
+<!--    <p>{{ document.date }}</p>-->
+<!--  </body>-->
+
+<!--</html>-->
+
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <style>
-            body {
-                background-color: lightskyblue;
-            }
-        </style>
-        <title>{{ document.job_title }}</title>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<!--    <style>-->
+<!--        body {-->
+<!--            background-color: lightskyblue;-->
+<!--        }-->
+<!--    </style>-->
+    <title>{{ document.job_title }}</title>
+</head>
 
-  <body>
-    <h1>{{ document.job_title }}</h1>
-    <p>{{ document.job_description }}</p>
-    <p>{{ document.job_requirements }}</p>
-    <p>{{ document.required_Qual }}</p>
-    <p>{{ document.job_post }}</p>
-    <p>{{ document.company_name }}</p>
-    <p>{{ document.about_company }}</p>
-    <p>{{ document.date }}</p>
-  </body>
+<body>
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h1 class="mb-0">{{ document.job_title }}</h1>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Job Description:</strong> {{ document.job_description }}</p>
+                        <p><strong>Job Requirements:</strong> {{ document.job_requirements }}</p>
+                        <p><strong>Required Qualifications:</strong> {{ document.required_Qual }}</p>
+                        <p><strong>Job Post:</strong> {{ document.job_post }}</p>
+                        <p><strong>Company Name:</strong> {{ document.company_name }}</p>
+                        <p><strong>About the Company:</strong> {{ document.about_company }}</p>
+                        <p><strong>Posted on:</strong> {{ document.date }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" integrity="sha384-BlDmsoV9/9_/H8l2suOsa1ouHo2QeXloOw8XRouyIoofZwp6p1reD0miTzp8daty" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.5.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
+</body>
 
 </html>
+
+
