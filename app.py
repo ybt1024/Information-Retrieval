@@ -36,12 +36,15 @@ def results():
     query = request.form["query"]
     pdf = request.files["file"]
     answer = None
+    most_frequent_skills = None
     if pdf:
         filename = secure_filename(pdf.filename)
         pdf.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         resume = load_resume(os.path.join(app.config["UPLOAD_FOLDER"], filename))
         prompt = "What are the most suitable jobs based on this resume: " + resume
         answer = gptAPI.getResponse(prompt) + " You can enter these into the search bar to find possible listings."
+    if query:
+        most_frequent_skills = required_skills_process(gptAPI.getResponse("Identify skills that are most frequently required by employers for " + query))
     matched_docs = BM25_standard_analyzer_search(query)
     return render_template('results.html',
                            page_id=0,
@@ -49,6 +52,7 @@ def results():
                            docs=matched_docs,
                            query=query,
                            answer = answer,
+                           most_frequent_skills = most_frequent_skills
                            )
 
 # result page for reranked results - based on cosine similarity
@@ -100,6 +104,11 @@ def string_to_int_list(s: str) -> List[int]:
 
 def slice(list: List, page_id: int, per_page: int) -> List:
     return list[page_id * PER_PAGE: min(len(list), (page_id + 1) * PER_PAGE)]
+
+
+def required_skills_process(skills: str) -> str:
+    index = skills.index("1")
+    return skills[index:]
 
 
 # document page
