@@ -45,13 +45,13 @@
                 {% endfor %}
             </ul>
 
-            <form action="{{ url_for('next_page', page_id = page_id + 1)}}" method="post">
-                <input type="hidden" name="query" value="{{query}}">
-                <input type="hidden" name="matched_doc_ids" value="{{matched_doc_ids}}">
-                <button type="submit" class="btn btn-primary {% if is_last %} disabled {% endif %}" {% if is_last %} disabled {% endif %}>
-                    Next
-                </button>
-            </form>
+<!--            <form action="{{ url_for('next_page', page_id = page_id + 1)}}" method="post">-->
+<!--                <input type="hidden" name="query" value="{{query}}">-->
+<!--                <input type="hidden" name="matched_doc_ids" value="{{matched_doc_ids}}">-->
+<!--                <button type="submit" class="btn btn-primary {% if is_last %} disabled {% endif %}" {% if is_last %} disabled {% endif %}>-->
+<!--                    Next-->
+<!--                </button>-->
+<!--            </form>-->
         </div>
     </div>
 </div>
