@@ -57,7 +57,14 @@ And put the downloaded “elasticsearch-7.10.2” into the unziped folder
 Note: you can use the samples resumes in corpus_data folder for testing instead of uploading your own! 
 
 
+# explain api in elastic search
 
- 
+elastic search returns the total hits, max score, and other basic information.
+![1](https://user-images.githubusercontent.com/60807383/236937626-f0a4cf37-55cc-48e7-83c0-38b43af4a09a.png)
+
+for explanation, it gives detailed weight for every token and every part of the formula.
+
+ ![2](https://user-images.githubusercontent.com/60807383/236937635-db51833e-2097-48f9-b202-9d5bb974484c.png)
+
 
 
