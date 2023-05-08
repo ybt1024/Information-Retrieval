@@ -1,7 +1,7 @@
 '''
 Code for the Flask App
 
-Contributor: Ziming Xu, Jiafan He, Kirsten, Junbin Tu
+Contributor: Ziming Xu, Jiafan He, Kirsten, Yunbin Tu
 '''
 from typing import List
 from utils import load_resume, load_csv
@@ -144,6 +144,7 @@ def required_skills_process(skills: str) -> str:
 
 
 # document page
+# contributor: Jiafan He
 @app.route("/doc_data/<int:doc_id>")
 def doc_data(doc_id):
     '''

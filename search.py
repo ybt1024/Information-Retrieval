@@ -11,7 +11,8 @@ import csv
 encoder = EmbeddingClient(host="localhost", embedding_type="sbert")
 connections.create_connection(hosts=["localhost"], timeout=100, alias="default")
 
-
+# Contributor: Jiafan He
+# Search with standard analyzer
 def BM25_standard_analyzer_search(query_text: str) -> List:
     q_basic = Match(
         job_post={"query": query_text}
@@ -19,7 +20,8 @@ def BM25_standard_analyzer_search(query_text: str) -> List:
     )
     return search("job_posting", q_basic, 8)
 
-
+# Contributor: Jiafan He
+# Search with Engilish analyzer
 def BM25_english_analyzer_search(query_text: str) -> List:
     q_basic = Match(
         job_post={"query": query_text}
@@ -27,6 +29,7 @@ def BM25_english_analyzer_search(query_text: str) -> List:
     return search("job_posting", q_basic, 8)
 
 
+# Contributor: Jiafan He, Kirsten
 def search(index: str, query: Query, k: int) -> List:
     s = Search(using="default", index=index).query(query)[:k]
     s = s.extra(explain=True)
@@ -36,6 +39,7 @@ def search(index: str, query: Query, k: int) -> List:
     return response
 
 
+# Contributor: Jiafan He
 def search_by_ids(index: str, doc_ids: List, k: int) -> List:
     q_match_ids = Ids(values=doc_ids)
     s = Search(using="default", index=index).query(q_match_ids)[:k]
@@ -44,6 +48,7 @@ def search_by_ids(index: str, doc_ids: List, k: int) -> List:
     return response
 
 
+# Contributor: Jiafan He
 def format_explanation(explanation):
     description = explanation['description']
     value = explanation['value']
