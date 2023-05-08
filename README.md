@@ -72,21 +72,31 @@ for explanation, it gives detailed weight for every token and every part of the 
 The bottleneck for response time is in the Chatgpt API calling, while the Elasticsearch part performs fast searches. Therefore, the speed of testing on the entire dataset is nearly as fast as testing on the subset.
 
 Query accounting assistant with Elasticsearch:
+![3](/TestResults/accounting%20assistant1.png)
 
 Query accounting assistant with Chatgpt Reranking:
+![4](/TestResults/accounting%20assistant2.png)
 
 Query civil engineer with Elasticsearch:
+![5](/TestResults/civil%20engineer%201.png)
 
 Query civil engineer with Chatgpt Reranking:
+![6](/TestResults/civil%20engineer%202.png)
 
 Query electrician with Elasticsearch:
+![7](/TestResults/electrician1.png)
 
 Query electrician with Chatgpt Reranking:
+![8](/TestResults/electrician2.png)
 
 Query front end developer with Elasticsearch:
+![9](/TestResults/front%20end%20developer1.png)
 
 Query front end developer with Chatgpt Reranking:
+![10](/TestResults/front%20end%20developer2.png)
 
 Query office assistant with Elasticsearch:
+![11](/TestResults/office%20assistant1.png)
 
 Query office assistant with Chatgpt Reranking:
+![12](/TestResults/office%20assistant2.png)
