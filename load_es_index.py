@@ -4,6 +4,7 @@ from typing import List, Dict, Union, Iterator
 from es_service.index import ESIndex
 from utils import load_nf_docs, load_csv
 import logging
+#adapted from hw5, made some changes to fit the project
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)

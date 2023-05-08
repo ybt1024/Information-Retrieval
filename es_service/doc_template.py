@@ -9,7 +9,7 @@ from elasticsearch_dsl import (  # type: ignore
     Nested,
 )
 
-
+#contributor: Jiafan He, Yunbin Tu
 class BaseDoc(Document):
     """
     wapo document mapping structure

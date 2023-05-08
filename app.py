@@ -26,6 +26,7 @@ def home():
 
 
 # result page
+#contributor: Ziming Xu, Jiafan He
 @app.route("/results", methods=["POST"])
 def results():
     global pdf
@@ -60,7 +61,7 @@ def results():
                            )
 
 '''
-Contributor: Kirsten
+Contributor: Kirsten, Ziming Xu
 Website directs to this page if the user hits the "AI Rerank" labeled button.
 '''
 @app.route("/reranked_results", methods=["POST"])

@@ -1,7 +1,7 @@
 '''
 Util functions to be used
 
-Contributor: Ziming Xu
+Contributor: Ziming Xu, Yunbin Tu
 '''
 from pathlib import Path
 from typing import Dict, Union, Generator
@@ -62,6 +62,7 @@ def load_nf_docs(nf_folder_path: Union[str, os.PathLike]) -> Generator[Dict, Non
             yield doc_dict
 
 
+# util funciton to load the csv file into a dictionary
 def load_csv(doc_path: Union[str, os.PathLike]) -> Generator[Dict, None, None]:
     with open(doc_path, 'r') as file:
         reader = csv.DictReader(file)
