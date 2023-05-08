@@ -1,7 +1,7 @@
 '''
 Code for interacting with GPT-3 in Python.
 
-Contributor: Ziming Xu,
+Contributor: Ziming Xu
 '''
 import openai
 import os

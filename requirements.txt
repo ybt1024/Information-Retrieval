@@ -6,3 +6,6 @@ pandas
 openai
 matplotlib
 plotly
+PyPDF2
+os
+openai
