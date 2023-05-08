@@ -57,7 +57,7 @@ And put the downloaded “elasticsearch-7.10.2” into the unziped folder
 Note: you can use the samples resumes in corpus_data folder for testing instead of uploading your own! 
 
 
-# explain api in elastic search
+# Explain api in elastic search
 
 elastic search returns the total hits, max score, and other basic information.
 ![1](https://user-images.githubusercontent.com/60807383/236937626-f0a4cf37-55cc-48e7-83c0-38b43af4a09a.png)
@@ -67,4 +67,26 @@ for explanation, it gives detailed weight for every token and every part of the 
  ![2](https://user-images.githubusercontent.com/60807383/236937635-db51833e-2097-48f9-b202-9d5bb974484c.png)
 
 
+# Test results
 
+The bottleneck for response time is in the Chatgpt API calling, while the Elasticsearch part performs fast searches. Therefore, the speed of testing on the entire dataset is nearly as fast as testing on the subset.
+
+Query accounting assistant with Elasticsearch:
+
+Query accounting assistant with Chatgpt Reranking:
+
+Query civil engineer with Elasticsearch:
+
+Query civil engineer with Chatgpt Reranking:
+
+Query electrician with Elasticsearch:
+
+Query electrician with Chatgpt Reranking:
+
+Query front end developer with Elasticsearch:
+
+Query front end developer with Chatgpt Reranking:
+
+Query office assistant with Elasticsearch:
+
+Query office assistant with Chatgpt Reranking:
