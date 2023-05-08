@@ -1,7 +1,7 @@
 '''
 Util functions to be used
 
-Contributor: Ziming Xu
+Contributor: Ziming Xu, 
 '''
 from pathlib import Path
 from typing import Dict, Union, Generator

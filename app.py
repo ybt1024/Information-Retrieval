@@ -1,7 +1,7 @@
 '''
 Code for the Flask App
 
-Contributor: Ziming Xu
+Contributor: Ziming Xu, Jiafan He, Kirsten, Junbin Tu
 '''
 from typing import List
 from utils import load_resume, load_csv
@@ -35,6 +35,8 @@ def results():
     # TODO:
     query = request.form["query"]
     pdf = request.files["file"]
+    if query == "":
+        return render_template('home.html')
     answer = "NONE - "
     answer += "Upload your resume for recommended jobs based on your query, and for the option/ability to rerank your results. "
     answer += "If you upload a file now, you must click the search button again. "
