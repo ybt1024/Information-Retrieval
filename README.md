@@ -2,7 +2,7 @@
 Final Project for COSI132a - Information Retrieval --- ChatGPT Job Search Engine
 created by Ziming Xu, Jiafan He, Kirsten Tapalla, Yunbin Tu
 
-google doc for design:
+Google Doc for Design:
 https://docs.google.com/document/d/1Sbf95iD2irQPIrFikL26B-8QzEZfoAwzdPwyAQI5zJc/edit
 
 Google Slides:
@@ -11,11 +11,12 @@ https://docs.google.com/presentation/d/12I_tTYuDChPN_23LzLDvwwOCTjgRwC3dTY1Tcbo0
 
 # System Design
 This is an application that integrates Chat-GPT to help people find suitable jobs.
-We uses elasticsearch to rank the searched jobs from user query.
-Users can upload resume and search for jobs ranked by Chat-GPT. Chat-GPT will provide information regarding recommended jobs and required skills etc.
-Users can also rerank the searched results based on Chat-GPT's analysis of the resume
+We used elasticsearch to rank the searched jobs from user query.
+Users can upload their resume and search for jobs ranked by Chat-GPT. 
+Chat-GPT will provide information regarding recommended jobs and required skills, etc.
+Users can also rerank the original searched results based on Chat-GPT's analysis of the resume.
 
-<b>Documents: </b><br/>
+<b>Documents:</b><br/>
 *corpus_data*                 - job postings data and sample resumes for testing<br/>
 *embedding_service*           - embedding service required documents <br/>
 *es_service*                  - elastic search (7.10.2) service required documents <br/>
@@ -57,7 +58,7 @@ And put the downloaded “elasticsearch-7.10.2” into the unziped folder
 Note: you can use the samples resumes in corpus_data folder for testing instead of uploading your own! 
 
 
-# Explain api in elastic search
+# Explaining API in Elastic Search
 
 elastic search returns the total hits, max score, and other basic information.
 ![1](https://user-images.githubusercontent.com/60807383/236937626-f0a4cf37-55cc-48e7-83c0-38b43af4a09a.png)
@@ -67,7 +68,7 @@ for explanation, it gives detailed weight for every token and every part of the 
  ![2](https://user-images.githubusercontent.com/60807383/236937635-db51833e-2097-48f9-b202-9d5bb974484c.png)
 
 
-# Test results
+# Test Results
 
 The bottleneck for response time is in the Chatgpt API calling, while the Elasticsearch part performs fast searches. Therefore, the speed of testing on the entire dataset is nearly as fast as testing on the subset.
 
@@ -100,3 +101,8 @@ Query office assistant with Elasticsearch:
 
 Query office assistant with Chatgpt Reranking:
 ![12](/TestResults/office%20assistant2.png)
+
+ # Chat-GPT Reranking
+<b>How It Works:</b><br/>
+The Chat-GPT reranking relies on the OpenAI embeddings model in order to rerank the original list of results to show which ones best fit the resume submitted by the user. In order to accomplish it, what was deemed important information from the job listings were all combined and turned into 1 string for each listing and then added to a list. At the end of the list the user's information from their resume was then added on after as well. The list of strings are then turned into a list of embeddings, and then cosine similarity is used to compare which job postings best match the resume. A new list is returned based on the index order of which ones are deemed most similar. For the embedding creation, cosine similarity reranking, and indexing of the reranked results, OpenAI actually has built in functions that easily allow us to do this and rerank the original list of results. <br/>
+The harder part of implementing the reranking was getting the results to be shown in the new order they were supposed to be in and adding the original results into the CSV file to be used when generating the embeddings. This is due to the fact that the results of elasticsearch are returned as Response and Hit objects, which made it difficult to go through the results in an easy way. Going through and getting Hit objects made it harder to obtain the data so that we could add it to the CSV file that was passed into the reranking module/class, but it was resolved by turning the results into dictionaries. Then to resolve reordering the results, we had to parse through the original list of results and add them to a different list so that they could be accessed through their index, since the built in function from OpenAI returns the reranked order of the results based on the index that they are in for the list of strings and embeddings. 
