@@ -2,11 +2,14 @@
 Final Project for COSI132a - Information Retrieval --- ChatGPT Job Search Engine
 created by Ziming Xu, Jiafan He, Kirsten Tapalla, Yunbin Tu
 
-Google Doc for Design:
+Google Doc for Design:<br/>
 https://docs.google.com/document/d/1Sbf95iD2irQPIrFikL26B-8QzEZfoAwzdPwyAQI5zJc/edit
 
-Google Slides:
+Google Slides:<br/>
 https://docs.google.com/presentation/d/12I_tTYuDChPN_23LzLDvwwOCTjgRwC3dTY1Tcbo0Sk8/edit#slide=id.g23e94a77bfb_0_297
+
+GitHub Repo:<br/>
+https://github.com/Bluster1024/Information-Retrieval
 
 
 # System Design
