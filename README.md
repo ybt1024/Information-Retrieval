@@ -16,20 +16,20 @@ Users can upload resume and search for jobs ranked by Chat-GPT. Chat-GPT will pr
 Users can also rerank the searched results based on Chat-GPT's analysis of the resume
 
 <b>Documents: </b><br/>
-corpus_data                 - job postings data and sample resumes for testing<br/>
-embedding_service           - embedding service required documents <br/>
-es_service                  - elastic search (7.10.2) service required documents <br/>
-templates                   - html webpage templates <br/>
-.gitignore                  - gitignore file <br/>
-app.py                      - the Flask application python file<br/>
-example_query.py            - example query adopted from previous assignments for reference<br/>
-gpt_ranking.py              - GPT reranking module<br/>
-gpt.py                      - GPT API (gpt-3.5-turbo) connection module<br/>
-load_es_index.py            - file to load elastic search indices<br/>
-README.md                   - this file<br/>
-requirements.txt            - requirements to be installed before running the app<br/>
-search.py                   - to search for stored indices in the database<br/>
-utils.py                    - Utility functions to load documents/csv files/resumes<br/>
+corpus_data             <div align="center">- job postings data and sample resumes for testing</div><br/>
+embedding_service       <div align="center">- embedding service required documents </div><br/>
+es_service              <div align="center">- elastic search (7.10.2) service required documents</div> <br/>
+templates               <div align="center">- html webpage templates </div><br/>
+.gitignore              <div align="center">- gitignore file </div><br/>
+app.py                  <div align="center">- the Flask application python file</div><br/>
+example_query.py        <div align="center">- example query adopted from previous assignments for reference</div><br/>
+gpt_ranking.py          <div align="center">- GPT reranking module</div><br/>
+gpt.py                  <div align="center">- GPT API (gpt-3.5-turbo) connection module</div><br/>
+load_es_index.py        <div align="center">- file to load elastic search indices</div><br/>
+README.md               <div align="center">- this file</div><br/>
+requirements.txt        <div align="center">- requirements to be installed before running the app</div><br/>
+search.py               <div align="center">- to search for stored indices in the database</div><br/>
+utils.py                <div align="center">- Utility functions to load documents/csv files/resumes</div><br/>
 
 
 # Setup Instructions 
