@@ -78,34 +78,34 @@ for explanation, it gives detailed weight for every token and every part of the 
 The bottleneck for response time is in the Chatgpt API calling, while the Elasticsearch part performs fast searches. Therefore, the speed of testing on the entire dataset is nearly as fast as testing on the subset.
 
 <b>Query accounting assistant with Elasticsearch:</b><br/>
-![3](/TestResults/accounting%20assistant1.png)
+![3](https://github.com/Bluster1024/Information-Retrieval/assets/101150204/6d59fc4a-fdd0-4ed1-9bff-77149bb36e57)
 
 <b>Query accounting assistant with Chatgpt Reranking:</b><br/>
-![4](/TestResults/accounting%20assistant2.png)
+![4](https://github.com/Bluster1024/Information-Retrieval/assets/101150204/3c029621-b965-47a3-8b13-5a2d49b4a1f9)
 
 <b>Query civil engineer with Elasticsearch:</b><br/>
-![5](/TestResults/civil%20engineer%201.png)
+![5](https://github.com/Bluster1024/Information-Retrieval/assets/101150204/96f5a97a-0e40-47af-a40a-0124a30b1181)
 
 <b>Query civil engineer with Chatgpt Reranking:</b><br/>
-![6](/TestResults/civil%20engineer%202.png)
+![6](https://github.com/Bluster1024/Information-Retrieval/assets/101150204/a3f25ba2-f2b3-441c-9ac9-1ee648ff7f55)
 
 <b>Query electrician with Elasticsearch:</b><br/>
-![7](/TestResults/electrician1.png)
+![7](https://github.com/Bluster1024/Information-Retrieval/assets/101150204/d4b655fa-d55c-41d4-bd9a-81cd88d3874f)
 
 <b>Query electrician with Chatgpt Reranking:</b><br/>
-![8](/TestResults/electrician2.png)
+![8](https://github.com/Bluster1024/Information-Retrieval/assets/101150204/a4301ac7-5bc3-45d3-ac05-34a192b0d955)
 
 <b>Query front end developer with Elasticsearch:</b><br/>
-![9](/TestResults/front%20end%20developer1.png)
+![9](https://github.com/Bluster1024/Information-Retrieval/assets/101150204/0a90aa4b-8b09-43d0-9ed8-b87975102257)
 
 <b>Query front end developer with Chatgpt Reranking:</b><br/>
-![10](/TestResults/front%20end%20developer2.png)
+![10](https://github.com/Bluster1024/Information-Retrieval/assets/101150204/a9cc3cc9-ef31-4dad-a7a4-53b71c1ddd4b)
 
 <b>Query office assistant with Elasticsearch:</b><br/>
-![11](/TestResults/office%20assistant1.png)
+![11](https://github.com/Bluster1024/Information-Retrieval/assets/101150204/143097dc-5a7d-4d91-b92b-1ec156b61ddb)
 
 <b>Query office assistant with Chatgpt Reranking:</b><br/>
-![12](/TestResults/office%20assistant2.png)
+![12](https://github.com/Bluster1024/Information-Retrieval/assets/101150204/b68d85fa-0bf5-45fa-b888-8903b4055d3b)
 
  # Chat-GPT Reranking
 <b>How It Works:</b><br/>
