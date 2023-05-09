@@ -15,7 +15,7 @@ We uses elasticsearch to rank the searched jobs from user query.
 Users can upload resume and search for jobs ranked by Chat-GPT. Chat-GPT will provide information regarding recommended jobs and required skills etc.
 Users can also rerank the searched results based on Chat-GPT's analysis of the resume
 
-Documents: <br/>
+<b>Documents: </b><br/>
 corpus_data                 - job postings data and sample resumes for testing<br/>
 embedding_service           - embedding service required documents <br/>
 es_service                  - elastic search (7.10.2) service required documents <br/>
