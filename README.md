@@ -72,37 +72,40 @@ for explanation, it gives detailed weight for every token and every part of the 
 
 The bottleneck for response time is in the Chatgpt API calling, while the Elasticsearch part performs fast searches. Therefore, the speed of testing on the entire dataset is nearly as fast as testing on the subset.
 
-Query accounting assistant with Elasticsearch:
+Query accounting assistant with Elasticsearch:<br/>
 ![3](/TestResults/accounting%20assistant1.png)
 
-Query accounting assistant with Chatgpt Reranking:
+Query accounting assistant with Chatgpt Reranking:<br/>
 ![4](/TestResults/accounting%20assistant2.png)
 
-Query civil engineer with Elasticsearch:
+Query civil engineer with Elasticsearch:<br/>
 ![5](/TestResults/civil%20engineer%201.png)
 
-Query civil engineer with Chatgpt Reranking:
+Query civil engineer with Chatgpt Reranking:<br/>
 ![6](/TestResults/civil%20engineer%202.png)
 
-Query electrician with Elasticsearch:
+Query electrician with Elasticsearch:<br/>
 ![7](/TestResults/electrician1.png)
 
-Query electrician with Chatgpt Reranking:
+Query electrician with Chatgpt Reranking:<br/>
 ![8](/TestResults/electrician2.png)
 
-Query front end developer with Elasticsearch:
+Query front end developer with Elasticsearch:<br/>
 ![9](/TestResults/front%20end%20developer1.png)
 
-Query front end developer with Chatgpt Reranking:
+Query front end developer with Chatgpt Reranking:<br/>
 ![10](/TestResults/front%20end%20developer2.png)
 
-Query office assistant with Elasticsearch:
+Query office assistant with Elasticsearch:<br/>
 ![11](/TestResults/office%20assistant1.png)
 
-Query office assistant with Chatgpt Reranking:
+Query office assistant with Chatgpt Reranking:<br/>
 ![12](/TestResults/office%20assistant2.png)
 
  # Chat-GPT Reranking
 <b>How It Works:</b><br/>
 The Chat-GPT reranking relies on the OpenAI embeddings model in order to rerank the original list of results to show which ones best fit the resume submitted by the user. In order to accomplish it, what was deemed important information from the job listings were all combined and turned into 1 string for each listing and then added to a list. At the end of the list the user's information from their resume was then added on after as well. The list of strings are then turned into a list of embeddings, and then cosine similarity is used to compare which job postings best match the resume. A new list is returned based on the index order of which ones are deemed most similar. For the embedding creation, cosine similarity reranking, and indexing of the reranked results, OpenAI actually has built in functions that easily allow us to do this and rerank the original list of results. <br/>
-The harder part of implementing the reranking was getting the results to be shown in the new order they were supposed to be in and adding the original results into the CSV file to be used when generating the embeddings. This is due to the fact that the results of elasticsearch are returned as Response and Hit objects, which made it difficult to go through the results in an easy way. Going through and getting Hit objects made it harder to obtain the data so that we could add it to the CSV file that was passed into the reranking module/class, but it was resolved by turning the results into dictionaries. Then to resolve reordering the results, we had to parse through the original list of results and add them to a different list so that they could be accessed through their index, since the built in function from OpenAI returns the reranked order of the results based on the index that they are in for the list of strings and embeddings. 
+The harder part of implementing the reranking was getting the results to be shown in the new order they were supposed to be in and adding the original results into the CSV file to be used when generating the embeddings. This is due to the fact that the results of elasticsearch are returned as Response and Hit objects, which made it difficult to go through the results in an easy way. Going through and getting Hit objects made it harder to obtain the data so that we could add it to the CSV file that was passed into the reranking module/class, but it was resolved by turning the results into dictionaries. Then to resolve reordering the results, we had to parse through the original list of results and add each Hit to a different list so that they could be accessed through their index, since the built in function from OpenAI returns the reranked order of the results based on the index that they are in for the list of strings and embeddings. <br/><br/>
+
+<b>Results:</b><br/>
+When testing our application, we would use the example resume files that we found online in order to check the reranking feature of the website. Furthermore, we would also submit our own personal resumes to it and see how it would work based on that. Overall, it's difficult to say whether or not the reranking of the job listings was actually better than the original ranking of the results because the way each person would view that is fairly subjective. People would obviously have different opinions as to which jobs they think are most relevant to themselves, so it was hard to truly determine whether or not it was working the way we intended it to. However, when testing it on our own resumes, we did find that we preferred the ranking of Chat-GPT over the original ranking obtaied through elastcisearch. In the end, while opinions on the validity and accuracy of the reranking feature would vary on each different user's own thoughts and opinions, we are satisfied with how it is at least able to rerank the results and provide the user with a different way/order to consider the results of their query. 
