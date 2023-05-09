@@ -35,25 +35,25 @@ Users can also rerank the original searched results based on Chat-GPT's analysis
 
 # Setup Instructions 
 1. Unzip the project zip file
-2. Activate Environment by running conda activate cosi132a
+2. Activate Environment by running <code>conda activate cosi132a</code>
 3. Download ES from https://www.elastic.co/downloads/past-releases/elasticsearch-7-10-2. 
 And put the downloaded “elasticsearch-7.10.2” into the unziped folder
 4. cd to the project folder
-5. Run pip install -r requirements.txt
-6. Run the following on command line to start ES engine: 
-        cd elasticsearch-7.10.2/
-        ./bin/elasticsearch
-7. On another terminal window, run the following to start embedding service:
-        python -m embedding_service.server --embedding sbert  --model all-mpnet-base-v2
-8. Load the indices by running:
-        python load_es_index.py --index_name job_posting --corpus_folder_path ./corpus_data/data_job_posts.csv
+5. Run <code>pip install -r requirements.txt</code>
+6. Run the following on command line to start ES engine: <br/>
+        <code>cd elasticsearch-7.10.2/</code><br/>
+        <code>./bin/elasticsearch</code><br/>
+7. On another terminal window, run the following to start embedding service:<br/>
+        <code>python -m embedding_service.server --embedding sbert  --model all-mpnet-base-v2</code>
+8. Load the indices by running:<br/>
+        <code>python load_es_index.py --index_name job_posting --corpus_folder_path ./corpus_data/data_job_posts.csv</code>
 9. Initialize your API key registered from https://platform.openai.com/account/api-keys
-10. Store your APIKEY locally (Only need to do once), and GPT will fetch the key from local environment:
-    On Mac:
-        export APIKEY="......."  # in bash
-    On Windows:
-        $env:APIKEY="....." # in powershell
-11. Run python app.py to use the app! 
+10. Store your APIKEY locally (Only need to do once), and GPT will fetch the key from local environment:<br/>
+    On Mac:<br/>
+        <code>export APIKEY="......." </code> # in bash<br/>
+    On Windows:<br/>
+        <code>$env:APIKEY="....."</code> # in powershell
+11. Run <code>python app.py</code> to use the app! 
 
 Note: you can use the samples resumes in corpus_data folder for testing instead of uploading your own! 
 
