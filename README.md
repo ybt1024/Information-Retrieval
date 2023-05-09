@@ -105,7 +105,7 @@ The bottleneck for response time is in the Chatgpt API calling, while the Elasti
 ![11](https://github.com/Bluster1024/Information-Retrieval/assets/101150204/143097dc-5a7d-4d91-b92b-1ec156b61ddb)
 
 <b>Query office assistant with Chatgpt Reranking:</b><br/>
-![12](/TestResults/office%20assistant2.png)
+![12](https://github.com/Bluster1024/Information-Retrieval/assets/101150204/aa042600-4c46-42de-ab09-01e86c30934b)
 
  # Chat-GPT Reranking
 <b>How It Works:</b><br/>
